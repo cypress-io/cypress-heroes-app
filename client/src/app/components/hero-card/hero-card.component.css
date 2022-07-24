@@ -1,0 +1,8 @@
+.hero-card {
+  @apply
+  w-[280px]
+  rounded-lg
+  border
+  shadow-md
+  bg-gray-50
+}

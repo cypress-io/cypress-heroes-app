@@ -1,0 +1,5 @@
+<div></div>
+
+<ul class="heroes">
+  <app-hero-card *ngFor="let hero of heroes" [hero]="hero" (onDeleteHero)="deleteHero($event)"></app-hero-card>
+</ul>

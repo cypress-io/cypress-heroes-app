@@ -1,0 +1,19 @@
+<header class="text-gray-500">
+  <div class="flex justify-between items-center mx-auto max-w-6xl p-2">
+    <div>
+      <a routerLink="/"
+        ><img src="/assets/images/cypress-logo.svg" alt="Cypress Logo"
+      /></a>
+    </div>
+    <nav>
+      <ul class="flex gap-8">
+        <li>
+          <app-button type="primary" routerLink="/heroes/new">Create New Hero</app-button>
+        </li>
+        <li>
+          <app-button type="outline" (click)="showLoginModal()">Login</app-button>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

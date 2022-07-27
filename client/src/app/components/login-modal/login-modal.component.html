@@ -1,34 +1,49 @@
-<ng-template let-context #modalTemplate>
-  <div
-    class="fixed flex flex-col justify-center items-center top-0 left-0 insert-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full"
-    id="modal"
-    (click)="hideModal()"
-  >
-    <div
-      class="p-8 border shadow-lg rounded-md bg-white relative -top-32"
-      (click)="$event.stopPropagation()"
-    >
-      <div class="flex flex-col gap-4 text-center w-[380px]">
-        <form>
-          <!-- Email input -->
-          <div class="mb-6">
-            <input
-              type="text"
-              class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              placeholder="Email address"
-            />
-          </div>
+<app-modal>
+  <div class="flex flex-col gap-4 w-[380px]">
+    <h5 class="text-xl">Login</h5>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" #ngForm="ngForm">
+      <!-- Email input -->
+      <div class="mb-6">
+        <input
+          type="email"
+          id="email"
+          formControlName="email"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-full"
+          placeholder="Email address"
+        />
+        <div
+          *ngIf="ngForm.submitted && loginForm.controls.email.errors?.['required']"
+        >
+          Email is required.
+        </div>
+        <div
+          *ngIf="ngForm.submitted && loginForm.controls.email.errors?.['email']"
+        >
+          Email must be a valid email address.
+        </div>
+      </div>
 
-          <!-- Password input -->
-          <div class="mb-6">
-            <input
-              type="password"
-              class="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-              placeholder="Password"
-            />
-          </div>
+      <!-- Password input -->
+      <div class="mb-6">
+        <input
+          type="password"
+          id="password"
+          formControlName="password"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-sm focus:ring-blue-500 focus:border-blue-500 block p-2.5 w-full"
+          placeholder="Password"
+        />
+        <div
+          *ngIf="ngForm.submitted && loginForm.controls.password.errors?.['required']"
+        >
+          Password is required.
+        </div>
+      </div>
 
-          <div class="flex justify-between items-center mb-6">
+      <div class="mb-6" *ngIf="errorMessage">
+        {{ errorMessage }}
+      </div>
+
+      <!-- <div class="flex justify-between items-center mb-6">
             <div class="form-group form-check">
               <input
                 type="checkbox"
@@ -42,13 +57,10 @@
                 >Remember me</label
               >
             </div>
-          </div>
+          </div> -->
 
-          <!-- Submit button -->
-          <app-button expand="full">Sign in</app-button>
-
-        </form>
-      </div>
-    </div>
+      <!-- Submit button -->
+      <app-button expand="full">Sign in</app-button>
+    </form>
   </div>
-</ng-template>
+</app-modal>

@@ -6,6 +6,7 @@ import {
   NotFoundException,
   Param,
   ParseIntPipe,
+  Patch,
   Post,
   Put,
   Req,
@@ -16,8 +17,10 @@ import {
 import { HeroesService } from './heroes.service';
 import { instanceToPlain } from 'class-transformer';
 import { Response, Request } from 'express';
-import { HeroEditModel } from 'src/models/hero';
+import { HeroCreateModel, HeroUpdateModel, UserViewModel } from 'src/models/models';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { Roles } from 'src/auth/roles.decorator';
+import { GetUser } from 'src/utils/get-user.decorator';
 
 @Controller('heroes')
 export class HeroesController {
@@ -48,27 +51,49 @@ export class HeroesController {
     }
   }
 
+  @Roles('admin')
   @Post()
-  async create(@Body() hero: HeroEditModel) {
+  async create(@Body() hero: HeroCreateModel) {
     const newHero = await this.heroesService.create(hero);
     return instanceToPlain(newHero);
   }
 
+  @Roles('admin')
   @Put(':id')
   async update(
-    @Body() hero: HeroEditModel,
+    @Body() hero: HeroUpdateModel,
     @Param('id', ParseIntPipe) id: number,
   ) {
-    hero.id = id;
-    const updatedHero = await this.heroesService.update(hero);
+    const updatedHero = await this.heroesService.update(id, hero);
     return instanceToPlain(updatedHero);
   }
 
+  @Roles('admin')
   @Delete(':id')
   async delete(@Param('id', ParseIntPipe) id: number) {
     await this.heroesService.delete(id);
   }
 
+  @Roles('user')
+  @Patch(':id')
+  async patch(
+    @Body() hero: HeroUpdateModel,
+    @GetUser() user: UserViewModel,
+    @Param('id', ParseIntPipe) id: number,
+  ) {
+    if (user.isAdmin) {
+      return this.heroesService.update(id, hero);
+    } else {
+      // regular users are only allowed to update fans and saves
+      const heroToUpdate: HeroUpdateModel = {
+        fans: hero.fans,
+        saves: hero.saves,
+      };
+      return await this.heroesService.update(id, heroToUpdate);
+    }
+  }
+
+  @Roles('admin')
   @Post(':id/avatar')
   @UseInterceptors(FileInterceptor('avatar'))
   async uploadAvatar(

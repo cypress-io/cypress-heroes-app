@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, mergeMap, Observable, of, Subject } from 'rxjs';
 import { Hero, HeroEditModel } from './models';
@@ -47,6 +47,13 @@ export class HeroService {
         return of(hero);
       }),
       catchError(this.handleError<any>('updateHero'))
+    );
+  }
+
+  updatePartialHero(hero: Partial<HeroEditModel>): Observable<any> {
+    const url = `${this.heroesUrl}/${hero.id}`;
+    return this.http.patch<Hero>(url, hero, this.httpOptions).pipe(
+      catchError(this.handleError<any>('updatePartialHero'))
     );
   }
 

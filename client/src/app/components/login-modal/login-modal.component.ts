@@ -1,11 +1,10 @@
 import {
-  AfterViewInit,
   Component,
-  ElementRef,
   OnInit,
-  TemplateRef,
-  ViewChild,
 } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { catchError, of } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 import { ModalService } from '../../services/modal.service';
 
 @Component({
@@ -13,11 +12,18 @@ import { ModalService } from '../../services/modal.service';
   templateUrl: 'login-modal.component.html',
   styleUrls: [],
 })
-export class LoginModalComponent implements OnInit, AfterViewInit {
-  @ViewChild('modalTemplate', { read: TemplateRef })
-  modalTemplate!: TemplateRef<any>;
+export class LoginModalComponent implements OnInit {
+  constructor(
+    private modalService: ModalService,
+    private authService: AuthService
+  ) {}
 
-  constructor(private modalService: ModalService, private el: ElementRef) {}
+  errorMessage?: string;
+
+  loginForm = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [Validators.required]),
+  });
 
   ngOnInit(): void {}
 
@@ -25,7 +31,25 @@ export class LoginModalComponent implements OnInit, AfterViewInit {
     this.modalService.hide();
   }
 
-  ngAfterViewInit() {
-    this.modalService.addModal('login', this.modalTemplate);
+  onSubmit() {
+    if (this.loginForm.valid) {
+      const creds = {
+        username: this.loginForm.value.email!,
+        password: this.loginForm.value.password!,
+      };
+      this.authService
+        .login(creds.username, creds.password)
+        .pipe(
+          catchError((err: Error) => {
+            this.errorMessage = err.message;
+            return of(undefined);
+          })
+        )
+        .subscribe((result) => {
+          if (result) {
+            this.hideModal();
+          }
+        });
+    }
   }
 }

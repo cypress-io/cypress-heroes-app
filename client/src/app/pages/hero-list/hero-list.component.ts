@@ -1,31 +1,85 @@
 import { Component, OnInit } from '@angular/core';
-import { Hero } from '../../services/models';
+import { Hero, HeroEditModel, User } from '../../services/models';
 import { HeroService } from '../../services/hero.service';
 import { ModalService } from 'src/app/services/modal.service';
+import { ConfirmDeleteModalComponent } from 'src/app/components/confirm-delete-modal/confirm-delete-modal.component';
+import { AuthService } from 'src/app/services/auth.service';
+import { Observable } from 'rxjs';
+import { ConfirmHireModalComponent } from 'src/app/components/confirm-hire-modal/confirm-hire-modal.component';
+import { AlertModalComponent } from 'src/app/components/alert-modal/alert-modal.component';
 
 @Component({
   selector: 'app-hero-list',
-  templateUrl: './hero-list.component.html',
-  styleUrls: ['./hero-list.component.css'],
+  template: `
+    <ul class="flex flex-wrap gap-8 justify-center">
+      <app-hero-card
+        *ngFor="let hero of $heroes | async; trackBy: trackHeroRow"
+        [hero]="hero"
+        (onDeleteHero)="deleteHero($event)"
+        (onHireHero)="hireHero($event)"
+        (onLikeHero)="likeHero($event)"
+        [user]="user"
+      ></app-hero-card>
+    </ul>
+  `,
 })
 export class HeroListComponent implements OnInit {
-  heroes: Hero[] = [];
+  $heroes?: Observable<Hero[]>;
+  user?: User;
 
   constructor(
     private heroService: HeroService,
+    private authService: AuthService,
     private modalService: ModalService
   ) {}
 
   ngOnInit(): void {
-    this.getHeroes();
+    this.$heroes = this.heroService.getHeroes();
+    this.authService.getUser().subscribe((user) => {
+      this.user = user;
+    });
   }
 
-  getHeroes(): void {
-    this.heroService.getHeroes().subscribe((heroes) => (this.heroes = heroes));
+  likeHero(hero: Hero) {
+    if (!this.user) {
+      this.modalService.show(AlertModalComponent, {
+        message: 'You must log in to like.',
+      });
+      return;
+    }
+    const heroUpdate: Partial<HeroEditModel> = {
+      id: hero.id,
+      fans: hero.fans + 1,
+    };
+    this.heroService.updatePartialHero(heroUpdate).subscribe(() => {
+      this.heroService.getHeroes();
+    });
+  }
+
+  hireHero(hero: Hero) {
+    if (!this.user) {
+      this.modalService.show(AlertModalComponent, {
+        message: 'You must log in to hire this hero.',
+      });
+      return;
+    }
+    this.modalService.show(ConfirmHireModalComponent, {
+      hero,
+      onHire: () => {
+        const heroUpdate: Partial<HeroEditModel> = {
+          id: hero.id,
+          saves: hero.saves + 1,
+        };
+        this.heroService.updatePartialHero(heroUpdate).subscribe(() => {
+          this.modalService.hide();
+          this.heroService.getHeroes();
+        });
+      },
+    });
   }
 
   deleteHero(hero: Hero) {
-    this.modalService.show('confirmDeleteHero', {
+    this.modalService.show(ConfirmDeleteModalComponent, {
       hero,
       onDelete: () => {
         this.heroService.deleteHero(hero.id).subscribe(() => {
@@ -34,5 +88,9 @@ export class HeroListComponent implements OnInit {
         });
       },
     });
+  }
+
+  trackHeroRow(_index: number, hero: Hero) {
+    return hero.id;
   }
 }

@@ -1,5 +1,5 @@
 import { Module, ValidationPipe } from '@nestjs/common';
-import { APP_PIPE } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD, APP_PIPE } from '@nestjs/core';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { HeroesController } from './heroes/heroes.controller';
@@ -7,13 +7,31 @@ import { HeroesService } from './heroes/heroes.service';
 import { PrismaService } from './utils/prisma.service';
 import { PowersService } from './powers/powers.service';
 import { PowersController } from './powers/powers.controller';
+import { AuthModule } from './auth/auth.module';
+import { UsersModule } from './users/users.module';
+import { AuthGuard } from './auth/auth.guard';
+import { EntityNotFoundFilter } from './utils/entity-not-found.filter';
 
 @Module({
-  imports: [],
+  imports: [AuthModule, UsersModule],
   controllers: [AppController, HeroesController, PowersController],
-  providers: [AppService, HeroesService, PrismaService, {
-    provide: APP_PIPE,
-    useClass: ValidationPipe
-  }, PowersService],
+  providers: [
+    AppService,
+    HeroesService,
+    PrismaService,
+    PowersService,
+    {
+      provide: APP_PIPE,
+      useClass: ValidationPipe,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+    {
+      provide: APP_FILTER,
+      useClass: EntityNotFoundFilter,
+    }
+  ],
 })
 export class AppModule {}

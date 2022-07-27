@@ -1,14 +1,23 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnInit,
+  ViewChild,
+} from '@angular/core';
 
 @Component({
   selector: 'app-button',
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.css'],
 })
-export class ButtonComponent implements OnInit {
+export class ButtonComponent implements OnInit, AfterViewInit {
   @Input() type: 'primary' | 'secondary' | 'danger' | 'outline' = 'primary';
   @Input() expand: 'inline-block' | 'full' = 'inline-block';
   @Input() text!: string;
+  @Input() focus?: boolean;
+  @ViewChild('button') button!: ElementRef;
 
   constructor() {}
 
@@ -32,11 +41,17 @@ export class ButtonComponent implements OnInit {
           ' text-gray-800 bg-gray-200/10 hover:bg-gray-200/75 focus:ring-gray-300 border border-gray-300';
     }
     if (this.expand === 'full') {
-      styles += ' w-full'
+      styles += ' w-full';
     }
     return styles;
     //
   }
 
   ngOnInit(): void {}
+
+  ngAfterViewInit(): void {
+    if (this.focus) {
+      this.button.nativeElement.focus();
+    }
+  }
 }

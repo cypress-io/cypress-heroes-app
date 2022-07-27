@@ -13,26 +13,13 @@ import { ModalService } from './services/modal.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
-  constructor(
-    private modalService: ModalService,
-    private vref: ViewContainerRef
-  ) {}
+export class AppComponent {
+  constructor(  ) {}
 
-  embeddedViewRef?: EmbeddedViewRef<any>;
+
 
   @ViewChild('modalTemplate', { read: TemplateRef })
   modalTemplate!: TemplateRef<any>;
 
-  ngOnInit(): void {
-    this.modalService.getModal().subscribe((modalInfo) => {
-      if (this.embeddedViewRef) {
-        this.embeddedViewRef.destroy();
-        this.embeddedViewRef = undefined;
-      }
-      if (modalInfo) {
-        this.embeddedViewRef = this.vref.createEmbeddedView(modalInfo.template, { $implicit: modalInfo.context });
-      }
-    });
-  }
+
 }

@@ -1,7 +1,0 @@
-.heroes {
-  @apply
-  flex
-  flex-wrap
-  gap-8
-  justify-center;
-}

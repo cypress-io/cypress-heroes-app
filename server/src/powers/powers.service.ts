@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Power } from 'src/models/hero';
+import { PowerViewModel } from 'src/models/models';
 import { mapper } from 'src/utils/mapper';
 import { PrismaService } from 'src/utils/prisma.service';
 
@@ -9,7 +9,7 @@ export class PowersService {
 
   async get() {
     const powerDataModels = await this.prismaService.power.findMany();
-    const powers = powerDataModels.map(p => mapper(new Power(), p));
+    const powers = powerDataModels.map(p => mapper(new PowerViewModel(), p));
     return  powers;
   }
 }

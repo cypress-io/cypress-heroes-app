@@ -7,11 +7,12 @@
     </div>
     <nav>
       <ul class="flex gap-8">
-        <li>
+        <li *ngIf="user && user.isAdmin">
           <app-button type="primary" routerLink="/heroes/new">Create New Hero</app-button>
         </li>
         <li>
-          <app-button type="outline" (click)="showLoginModal()">Login</app-button>
+          <app-button *ngIf="user" type="outline" (click)="logout()">Logout</app-button>
+          <app-button *ngIf="!user" type="outline" (click)="showLoginModal()">Login</app-button>
         </li>
       </ul>
     </nav>

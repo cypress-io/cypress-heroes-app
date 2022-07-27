@@ -8,12 +8,18 @@ export interface Hero {
   fans: number;
 }
 
-export interface HeroEditModel extends Omit<Hero, 'id' | 'avatar' | 'powers'> {
+export interface HeroEditModel extends Omit<Hero, 'id' | 'avatarUrl' | 'powers'> {
   id?: number;
-  powers: number[]
+  powers: number[];
 }
 
 export interface Power {
   id: number;
   name: string;
+}
+
+export interface User {
+  id: number;
+  email: string;
+  isAdmin: boolean;
 }

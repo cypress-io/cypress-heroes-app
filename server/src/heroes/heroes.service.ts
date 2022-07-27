@@ -1,7 +1,11 @@
 import { Inject, Injectable, Scope } from '@nestjs/common';
 import { REQUEST } from '@nestjs/core';
 import { Prisma } from '@prisma/client';
-import { HeroViewModel, HeroEditModel } from 'src/models/hero';
+import {
+  HeroViewModel,
+  HeroUpdateModel,
+  HeroCreateModel,
+} from 'src/models/models';
 import { mapper } from 'src/utils/mapper';
 import { PrismaService } from 'src/utils/prisma.service';
 import { Request } from 'express';
@@ -37,7 +41,7 @@ export class HeroesService {
   }
 
   async getById(id: number) {
-    const heroDataModel = await this.prismaService.hero.findUnique({
+    const heroDataModel = await this.prismaService.hero.findUniqueOrThrow({
       where: {
         id: id,
       },
@@ -50,6 +54,7 @@ export class HeroesService {
         },
       },
     });
+
     const hero = mapper(new HeroViewModel(), heroDataModel, (obj) => {
       if (heroDataModel.avatar?.id) {
         obj.avatarUrl = `${this.req.protocol}://${this.req.get(
@@ -73,7 +78,7 @@ export class HeroesService {
     return heroDataModel.avatar;
   }
 
-  async create(hero: HeroEditModel) {
+  async create(hero: HeroCreateModel) {
     const { powers, ...rest } = hero;
     const heroToCreate: Prisma.HeroCreateInput = {
       ...rest,
@@ -87,22 +92,20 @@ export class HeroesService {
     });
   }
 
-  async update(hero: HeroEditModel) {
-    if (hero.id) {
-      const { powers, ...rest } = hero;
-      const heroToUpdate: Prisma.HeroUpdateInput = {
-        ...rest,
-        powers: {
-          connect: powers.map((x) => ({ id: x })),
-        },
-      };
-      return await this.prismaService.hero.update({
-        where: {
-          id: hero.id,
-        },
-        data: heroToUpdate,
-      });
-    }
+  async update(id: number, hero: HeroUpdateModel) {  
+    const { powers, ...rest } = hero ;
+    const heroToUpdate: Prisma.HeroUpdateInput = {
+      ...rest,
+      powers: {
+        connect: powers?.map((x) => ({ id: x })),
+      },
+    };
+    return await this.prismaService.hero.update({
+      where: {
+        id,
+      },
+      data: heroToUpdate,
+    });
   }
 
   async delete(id: number) {

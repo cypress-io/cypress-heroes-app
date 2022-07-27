@@ -5,6 +5,7 @@ import { ModalService } from 'src/app/services/modal.service';
 import { HeroService } from 'src/app/services/hero.service';
 import { Hero, HeroEditModel, Power } from 'src/app/services/models';
 import { PowerService } from 'src/app/services/power.service';
+import { ConfirmDeleteModalComponent } from 'src/app/components/confirm-delete-modal/confirm-delete-modal.component';
 
 @Component({
   selector: 'app-hero-edit',
@@ -40,7 +41,7 @@ export class HeroEditComponent implements OnInit {
   }
 
   deleteHero(hero: Hero) {
-    this.modalService.show('confirmDeleteHero', {
+    this.modalService.show(ConfirmDeleteModalComponent, {
       hero,
       onDelete: () => {
         this.heroService.deleteHero(hero.id).subscribe(() => {

@@ -5,9 +5,9 @@
       <div class="p-2 text-center">
         <span
           class="text-xl font-bold block uppercase tracking-wide text-slate-700"
-          >{{ hero.saves | shortNumber }}</span
+          >${{ hero.price | shortNumber }}</span
         >
-        <span class="text-sm text-slate-400">Saves</span>
+        <span class="text-sm text-slate-400">Price</span>
       </div>
       <div class="p-2 text-center">
         <span
@@ -15,6 +15,13 @@
           >{{ hero.fans | shortNumber }}</span
         >
         <span class="text-sm text-slate-400">Fans</span>
+      </div>
+      <div class="p-2 text-center">
+        <span
+          class="text-xl font-bold block uppercase tracking-wide text-slate-700"
+          >{{ hero.saves | shortNumber }}</span
+        >
+        <span class="text-sm text-slate-400">Saves</span>
       </div>
     </div>
     <h5 class="mb-1 text-xl font-medium text-gray-500">
@@ -38,11 +45,14 @@
 
     <div class="flex flex-col mt-2 gap-2">
       <div class="flex gap-2">
-        <app-icon-button icon="money"></app-icon-button>
-        <app-icon-button icon="like"></app-icon-button>
+        <app-icon-button icon="like" (click)="likeHero()"></app-icon-button>
+        <app-icon-button icon="money" (click)="hireHero()"></app-icon-button>
       </div>
-      <div class="flex gap-2">
-        <app-icon-button icon="pencil" routerLink="/heroes/{{ hero.id }}/edit"></app-icon-button>
+      <div *ngIf="user?.isAdmin" class="flex gap-2">
+        <app-icon-button
+          icon="pencil"
+          routerLink="/heroes/{{ hero.id }}/edit"
+        ></app-icon-button>
         <app-icon-button icon="trash" (click)="deleteHero()"></app-icon-button>
       </div>
     </div>

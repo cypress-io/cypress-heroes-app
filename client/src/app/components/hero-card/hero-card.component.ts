@@ -3,12 +3,12 @@ import { Hero, User } from '../../services/models';
 
 @Component({
   selector: 'app-hero-card',
-  templateUrl: './hero-card.component.html',
-  styleUrls: ['./hero-card.component.css'],
+  templateUrl: './hero-card.component.html'
 })
 export class HeroCardComponent implements OnInit {
   @Input() hero!: Hero;
   @Input() user?: User;
+  @Input() hideButtons: boolean = false;
   @Output() onDeleteHero = new EventEmitter<Hero>();
   @Output() onHireHero = new EventEmitter<Hero>();
   @Output() onLikeHero = new EventEmitter<Hero>();

@@ -9,8 +9,7 @@ import { ConfirmDeleteModalComponent } from 'src/app/components/confirm-delete-m
 
 @Component({
   selector: 'app-hero-edit',
-  templateUrl: './hero-edit.component.html',
-  styleUrls: ['./hero-edit.component.css'],
+  templateUrl: './hero-edit.component.html'
 })
 export class HeroEditComponent implements OnInit {
   constructor(

@@ -9,8 +9,7 @@ import { ModalService } from '../../services/modal.service';
 
 @Component({
   selector: 'login-modal',
-  templateUrl: 'login-modal.component.html',
-  styleUrls: [],
+  templateUrl: 'login-modal.component.html'
 })
 export class LoginModalComponent implements OnInit {
   constructor(

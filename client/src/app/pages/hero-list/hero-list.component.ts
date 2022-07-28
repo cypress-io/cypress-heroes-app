@@ -12,7 +12,8 @@ import { AlertModalComponent } from 'src/app/components/alert-modal/alert-modal.
   selector: 'app-hero-list',
   template: `
     <ul class="flex flex-wrap gap-8 justify-center">
-      <app-hero-card
+      <li
+        hero-card
         *ngFor="let hero of $heroes | async; trackBy: trackHeroRow"
         [hero]="hero"
         (onDeleteHero)="deleteHero($event)"
@@ -20,7 +21,7 @@ import { AlertModalComponent } from 'src/app/components/alert-modal/alert-modal.
         (onLikeHero)="likeHero($event)"
         [user]="user"
         class="mt-8"
-      ></app-hero-card>
+      ></li>
     </ul>
   `,
 })

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Hero, User } from '../../services/models';
 
 @Component({
-  selector: 'app-hero-card',
+  selector: '[hero-card]',
   templateUrl: './hero-card.component.html'
 })
 export class HeroCardComponent implements OnInit {

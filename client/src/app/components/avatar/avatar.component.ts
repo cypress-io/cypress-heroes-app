@@ -1,19 +1,25 @@
-import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import { Hero } from 'src/app/services/models';
 
 @Component({
   selector: 'app-avatar',
-  templateUrl: './avatar.component.html',
-  styleUrls: ['./avatar.component.css']
+  template: `
+    <img
+      class="w-24 h-24 rounded-full shadow-md border border-gray-300"
+      src="{{ hero.avatarUrl || '/assets/images/empty-avatar.webp' }}"
+      alt="{{ hero.name }}"
+    />
+  `,
 })
 export class AvatarComponent implements OnInit {
-
   @Input() hero!: Hero;
   @Input() class?: string;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

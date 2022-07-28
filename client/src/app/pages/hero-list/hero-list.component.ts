@@ -19,6 +19,7 @@ import { AlertModalComponent } from 'src/app/components/alert-modal/alert-modal.
         (onHireHero)="hireHero($event)"
         (onLikeHero)="likeHero($event)"
         [user]="user"
+        class="mt-8"
       ></app-hero-card>
     </ul>
   `,

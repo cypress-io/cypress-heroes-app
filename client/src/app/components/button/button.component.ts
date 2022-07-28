@@ -9,8 +9,11 @@ import {
 
 @Component({
   selector: 'app-button',
-  templateUrl: './button.component.html',
-  styleUrls: ['./button.component.css'],
+  template: `
+    <button class="{{ getStyles() }}" #button>
+      <ng-content></ng-content>
+    </button>
+  `,
 })
 export class ButtonComponent implements OnInit, AfterViewInit {
   @Input() type: 'primary' | 'secondary' | 'danger' | 'outline' = 'primary';

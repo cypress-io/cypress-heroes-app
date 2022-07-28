@@ -1,15 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import {
-  Hero,
-  HeroEditModel,
-  Power,
-} from '../../services/models';
+import { Hero, HeroEditModel, Power } from '../../services/models';
 
 @Component({
   selector: 'app-hero-form',
   templateUrl: './hero-form.component.html',
-  styleUrls: ['./hero-form.component.css'],
 })
 export class HeroFormComponent implements OnInit {
   constructor() {}
@@ -34,12 +29,16 @@ export class HeroFormComponent implements OnInit {
 
   async onSubmit() {
     if (this.heroForm.valid) {
-      const hero = {
+      const hero: HeroEditModel = {
         id: this.hero?.id,
-        ...this.heroForm.value
-      }
+        name: this.heroForm.value.name!,
+        price: Number(this.heroForm.value.price),
+        fans: Number(this.heroForm.value.fans),
+        saves: Number(this.heroForm.value.saves),
+        powers: this.heroForm.value.powers!,
+      };
       this.onSave.emit({
-        hero: hero as HeroEditModel,
+        hero: hero,
         file: this.file,
       });
     }

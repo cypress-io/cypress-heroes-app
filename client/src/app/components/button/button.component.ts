@@ -2,15 +2,17 @@ import {
   AfterViewInit,
   Component,
   ElementRef,
+  EventEmitter,
   Input,
   OnInit,
+  Output,
   ViewChild,
 } from '@angular/core';
 
 @Component({
   selector: 'app-button',
   template: `
-    <button class="{{ getStyles() }}" #button>
+    <button (click)="onClick.emit()" class="{{ getStyles() }}" #button>
       <ng-content></ng-content>
     </button>
   `,
@@ -21,6 +23,7 @@ export class ButtonComponent implements OnInit, AfterViewInit {
   @Input() text!: string;
   @Input() focus?: boolean;
   @ViewChild('button') button!: ElementRef;
+  @Output() onClick = new EventEmitter();
 
   constructor() {}
 

@@ -20,6 +20,7 @@
     "@angular/router": "^14.0.0",
     "@tailwindcss/typography": "^0.5.4",
     "angular-in-memory-web-api": "^0.14.0",
+    "cypress": "https://cdn.cypress.io/beta/npm/10.4.0/darwin-arm64/develop-6f12c2378ad248c74115963025eb1b7a32a3d316/cypress.tgz",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"npm --prefix ./client run start\" \"npm --prefix ./server run start:debug\""
+    "start": "concurrently \"npm --prefix ./client run start\" \"npm --prefix ./server run start:debug\"",
+    "preinstall": "concurrently \"npm --prefix ./client install\" \"npm --prefix ./server install\"",
+    "postinstall": "cd ./server && npx prisma db push && npx prisma db seed"
   },
   "author": "",
   "license": "ISC",

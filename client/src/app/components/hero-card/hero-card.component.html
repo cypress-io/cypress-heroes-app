@@ -1,4 +1,4 @@
-<app-card>
+<app-card id="{{hero.name}}-card">
   <app-avatar class="-mt-8" [hero]="hero"></app-avatar>
   <div class="flex justify-center">
     <div class="p-2 text-center">
@@ -10,7 +10,7 @@
     </div>
     <div class="p-2 text-center">
       <span
-        class="text-xl font-bold block uppercase tracking-wide text-slate-700"
+        class="text-xl font-bold block uppercase tracking-wide text-slate-700" id="{{hero.name}}-fans"
         >{{ hero.fans | shortNumber }}</span
       >
       <span class="text-sm text-slate-400">Fans</span>
@@ -44,7 +44,7 @@
 
   <div *ngIf="!hideButtons" class="flex flex-col mt-2 gap-2 mb-8">
     <div class="flex gap-2">
-      <app-icon-button icon="like" (click)="likeHero()"></app-icon-button>
+      <app-icon-button id="{{hero.name}}-like" icon="like" (click)="likeHero()"></app-icon-button>
       <app-icon-button icon="money" (click)="hireHero()"></app-icon-button>
     </div>
     <div *ngIf="user?.isAdmin" class="flex gap-2">

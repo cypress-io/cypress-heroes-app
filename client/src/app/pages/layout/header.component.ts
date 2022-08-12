@@ -28,13 +28,14 @@ import { LoginModalComponent } from '../../components/login-modal/login-modal.co
               >
             </li>
             <li>
-              <app-button *ngIf="user" type="outline" (click)="logout()"
+              <app-button *ngIf="user" type="outline" id="logout" (click)="logout()"
                 >Logout</app-button
               >
               <app-button
                 *ngIf="!user"
                 type="outline"
                 (click)="showLoginModal()"
+                id="login"
                 >Login</app-button
               >
             </li>

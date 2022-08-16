@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npm --prefix ./client run start",
-    "postinstall": "concurrently \"npm --prefix ./client install\" \"npm --prefix ./server install\"",
+    "postinstall": "concurrently \"npm --prefix ./client install --no-package-lock\" \"npm --prefix ./server install --no-package-lock\"",
     "guide": "path-exists guide && echo 'guide already cloned' || git clone -b guide git@github.com:cypress-io/cypress-heroes-app.git guide && path-exists ./guide/node_modules && echo 'guide deps already installed' || npm --prefix ./guide install && npm --prefix ./guide run serve"
   },
   "author": "",

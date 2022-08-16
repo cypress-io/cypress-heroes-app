@@ -4,8 +4,6 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
-console.log(process.env);
-
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Cypress for Angular Devs Workshop',

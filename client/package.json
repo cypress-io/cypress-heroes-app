@@ -30,6 +30,7 @@
     "autoprefixer": "^10.4.7",
     "cypress": "^10.6.0",
     "jasmine-core": "~4.1.0",
+    "jasmine-spec-reporter": "^7.0.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.2.0",

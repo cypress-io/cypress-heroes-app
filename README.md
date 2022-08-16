@@ -1,11 +1,19 @@
-# Cypress Tour of Heroes App
-This app is used as an example app of how to use Cypress in an Angular Application
+# Cypress for Angular Devs Workshop
 
-## Login
-*Normal User*
-test@test.com
-test123
+Welcome to the Cypress for Angular Devs Workshop!
 
-*admin*
-admin@test.com
-test123
+## Getting Started
+
+To get started, open the guide at [https://cypress-io.github.io/cypress-heroes-app/](https://cypress-io.github.io/cypress-heroes-app/).
+
+Alternatively, you can view the guide locally by running the following from the root directory:
+
+```bash
+npm run guide
+```
+
+This will serve the guide at [http://localhost:8080](http://localhost:8080).
+
+Once the guide is open, you can begin following along.
+
+Enjoy!

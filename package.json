@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "concurrently \"npm --prefix ./client run start\" \"npm --prefix ./server run start:debug\"",
-    "preinstall": "concurrently \"npm --prefix ./client install\" \"npm --prefix ./server install\"",
-    "postinstall": "cd ./server && npx prisma db push && npx prisma db seed"
+    "start": "npm --prefix ./client run start",
+    "postinstall": "concurrently \"npm --prefix ./client install\" \"npm --prefix ./server install\"",
+    "guide": "path-exists guide && echo 'guide already cloned' || git clone -b guide git@github.com:cypress-io/cypress-heroes-app.git guide && path-exists ./guide/node_modules && echo 'guide deps already installed' || npm --prefix ./guide install && npm --prefix ./guide run serve"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "concurrently": "^7.2.2"
+    "concurrently": "^7.2.2",
+    "path-exists-cli": "^2.0.0"
   }
 }

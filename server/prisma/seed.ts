@@ -5,6 +5,14 @@ import { generatePasswordHash } from '../src/utils/cypto';
 const prisma = new PrismaClient();
 
 async function main() {
+
+  const data = await prisma.hero.findMany();
+
+  if (data.length !== 0) {
+    console.log('Database already seeded')
+    return;
+  }
+
   const flyingPower = await prisma.power.create({
     data: {
       name: 'Flying',
@@ -193,5 +201,7 @@ async function main() {
     },
   });
 }
+
+
 
 main();

@@ -15,9 +15,12 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import { HeroesService } from './heroes.service';
-import { instanceToPlain } from 'class-transformer';
 import { Response, Request } from 'express';
-import { HeroCreateModel, HeroUpdateModel, UserViewModel } from 'src/models/models';
+import {
+  HeroCreateModel,
+  HeroUpdateModel,
+  UserViewModel,
+} from 'src/models/models';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Roles } from 'src/auth/roles.decorator';
 import { GetUser } from 'src/utils/get-user.decorator';
@@ -29,7 +32,7 @@ export class HeroesController {
   @Get()
   async getHeroes() {
     const heroes = await this.heroesService.get();
-    return instanceToPlain(heroes);
+    return heroes;
   }
 
   @Get(':id')
@@ -38,7 +41,7 @@ export class HeroesController {
     if (!hero) {
       throw new NotFoundException();
     }
-    return instanceToPlain(hero);
+    return hero;
   }
 
   @Get(':id/avatar')
@@ -55,7 +58,7 @@ export class HeroesController {
   @Post()
   async create(@Body() hero: HeroCreateModel) {
     const newHero = await this.heroesService.create(hero);
-    return instanceToPlain(newHero);
+    return newHero;
   }
 
   @Roles('admin')
@@ -65,7 +68,7 @@ export class HeroesController {
     @Param('id', ParseIntPipe) id: number,
   ) {
     const updatedHero = await this.heroesService.update(id, hero);
-    return instanceToPlain(updatedHero);
+    return updatedHero;
   }
 
   @Roles('admin')

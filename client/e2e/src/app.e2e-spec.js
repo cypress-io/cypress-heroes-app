@@ -1,8 +1,11 @@
 const { browser, by, element } = require("protractor");
 
 describe("Angular App", () => {
-  it("checks title", () => {
+  beforeEach(() => {
     browser.get("/");
+  });
+
+  it("checks title", () => {
     expect(browser.getTitle()).toEqual("CyHeroes");
   });
 
@@ -18,7 +21,7 @@ describe("Angular App", () => {
 
     browser
       .actions()
-      .click(element(by.buttonText("Sign in")))
+      .click(element(by.id("signin")))
       .perform();
 
     expect(element(by.id("logout")).getText()).toEqual("Logout");

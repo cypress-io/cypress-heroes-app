@@ -25,7 +25,7 @@ import { ModalService } from 'src/app/services/modal.service';
         (mousedown)="hideModal()"
       >
         <div
-          class="p-8 border shadow-lg rounded-md bg-white relative -top-32"
+          class="p-8 border shadow-lg rounded-md bg-white relative -top-[10%]"
           (mousedown)="$event.stopPropagation()"
           [@modalDialog]="visibility"
         >

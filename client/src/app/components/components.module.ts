@@ -18,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 import { TextInputComponent, ValidationErrorsComponent } from './text-input/text-input.component';
 import { InputFieldComponent } from './input-field/input-field.component';
+import { LoginFormComponent } from './login-form/login-form.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { InputFieldComponent } from './input-field/input-field.component';
     AlertModalComponent,
     ConfirmDeleteModalComponent,
     ConfirmHireModalComponent,
+    LoginFormComponent,
     LoginModalComponent,
     ModalComponent,
     ModalContainerComponent,
@@ -56,6 +58,7 @@ import { InputFieldComponent } from './input-field/input-field.component';
     ConfirmDeleteModalComponent,
     ConfirmHireModalComponent,
     LoginModalComponent,
+    LoginFormComponent,
     ModalComponent,
     ModalContainerComponent,
     CardComponent

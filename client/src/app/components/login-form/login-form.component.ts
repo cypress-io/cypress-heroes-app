@@ -2,15 +2,12 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { catchError, of } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
-import { ModalService } from '../../services/modal.service';
-
 @Component({
   selector: 'app-login-form',
   templateUrl: 'login-form.component.html',
 })
 export class LoginFormComponent implements OnInit {
   constructor(
-    private modalService: ModalService,
     private authService: AuthService
   ) {}
 
@@ -24,10 +21,6 @@ export class LoginFormComponent implements OnInit {
   });
 
   ngOnInit(): void {}
-
-  hideModal() {
-    this.modalService.hide();
-  }
 
   onSubmit() {
     if (this.loginForm.valid) {

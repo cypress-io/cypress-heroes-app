@@ -20,7 +20,7 @@ import './commands';
 // require('./commands')
 
 import { mount } from 'cypress/angular';
-import { ButtonComponent } from '../../src/app/components/button/button.component';
+import { ComponentsModule } from '../../src/app/components/components.module';
 
 // Augment the Cypress namespace to include type definitions for
 // your custom command.
@@ -39,11 +39,11 @@ type MountParams = Parameters<typeof mount>;
 Cypress.Commands.add(
   'mount',
   (component: MountParams[0], config: MountParams[1]) => {
-    const declarations = [ButtonComponent];
+    const imports = [ComponentsModule];
     if (!config) {
-      config = { declarations };
+      config = { imports };
     } else {
-      config.declarations = [...(config?.declarations || []), ...declarations];
+      config.imports = [...(config?.imports || []), ...imports];
     }
     return mount(component, config);
   }

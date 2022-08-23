@@ -4,11 +4,13 @@ Welcome to this lab on how to migrate from Protractor tests to Cypress.
 
 ## Getting Started
 
-To get started, checkout the `lab1-start` branch:
+To get started, make checkout the `lab1-start` branch:
 
 ```
 git checkout lab1-start
 ```
+
+You can find a completed version of this lab in the [lab1-complete](https://github.com/cypress-io/cypress-heroes-app/tree/lab1-complete) branch.
 
 If the app is not currently running, start it:
 

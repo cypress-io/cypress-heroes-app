@@ -2,13 +2,16 @@
 
 ## Getting Started
 
-To get started, make sure your current branch is clean, and then checkout the `lab2-start` branch:
+To get started, make sure your current branch is clean, and then checkout the
+`lab2-start` branch:
 
 ```
 git checkout lab2-start
 ```
 
-You can find a completed version of this lab in the [lab2-complete](https://github.com/cypress-io/cypress-heroes-app/tree/lab2-complete) branch.
+You can find a completed version of this lab in the
+[lab2-complete](https://github.com/cypress-io/cypress-heroes-app/tree/lab2-complete)
+branch.
 
 If the app is not currently running, start it:
 
@@ -181,7 +184,7 @@ it('should respond to onClick event', () => {
 });
 ```
 
-> We also have a method to auto create spies for all outputs, with a caveat
-> that you need to use the component syntax. See
+> We also have a method to auto create spies for all outputs, with a caveat that
+> you need to use the component syntax. See
 > [Using autoSpyOutputs](https://docs.cypress.io/guides/component-testing/events-angular#Using-autoSpyOutputs)
 > in the docs for more info.

@@ -25,7 +25,11 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.1.3",
     "@angular/cli": "~14.1.3",
+<<<<<<< HEAD
     "@angular/compiler-cli": "^14.1.3",
+=======
+    "@angular/compiler-cli": "^14.0.0",
+>>>>>>> d1d2686 (update ng cli)
     "@types/jasmine": "~4.0.0",
     "autoprefixer": "^10.4.7",
     "cypress": "^10.6.0",

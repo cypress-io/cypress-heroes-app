@@ -95,19 +95,17 @@ it('should have custom text', () => {
 
 Add custom mount command to always include button declaration:
 
-```ts title=./client/cypress/support/component.ts
+```ts
 type MountParams = Parameters<typeof mount>;
 
 Cypress.Commands.add(
   'mount',
-  (component: MountParams[0], config: MountParams[1]) => {
+  (component: MountParams[0], config: MountParams[1] = {}) => {
     const declarations = [ButtonComponent];
-    if (!config) {
-      config = { declarations };
-    } else {
-      config.declarations = [...(config?.declarations || []), ...declarations];
-    }
-    return mount(component, config);
+    return mount(component, {
+      ...config,
+      declarations,
+    });
   }
 );
 ```
@@ -124,16 +122,16 @@ it('should have custom text', () => {
 we can make mount command better by importing the components module
 
 ```ts title=./client/cypress/support/component.ts
+type MountParams = Parameters<typeof mount>;
+
 Cypress.Commands.add(
   'mount',
-  (component: MountParams[0], config: MountParams[1]) => {
+  (component: MountParams[0], config: MountParams[1] = {}) => {
     const imports = [ComponentsModule];
-    if (!config) {
-      config = { imports };
-    } else {
-      config.imports = [...(config?.imports || []), ...imports];
-    }
-    return mount(component, config);
+    return mount(component, {
+      ...config,
+      imports,
+    });
   }
 );
 ```
@@ -144,12 +142,12 @@ test if focus input works
 
 ```ts title=./client/src/app/components/button/button.component.cy.ts
 it('should not be focused when focus is falsey', () => {
-  cy.mount(`<app-button>Click me</app-button>`);
+  cy.mount(`<app-button [focus]="false">Click me</app-button>`);
   cy.focused().should('not.exist');
 });
 
 it('should be focused when focus is true', () => {
-  cy.mount(`<app-button focus="true">Click me</app-button>`);
+  cy.mount(`<app-button [focus]="true">Click me</app-button>`);
   cy.focused().should('have.text', 'Click me');
 });
 ```

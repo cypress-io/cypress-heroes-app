@@ -20,7 +20,6 @@ import {
 export class ButtonComponent implements OnInit, AfterViewInit {
   @Input() type: 'primary' | 'secondary' | 'danger' | 'outline' = 'primary';
   @Input() expand: 'inline-block' | 'full' = 'inline-block';
-  @Input() text!: string;
   @Input() focus?: boolean;
   @ViewChild('button') button!: ElementRef;
   @Output() onClick = new EventEmitter();

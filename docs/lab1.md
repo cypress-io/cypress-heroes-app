@@ -20,7 +20,7 @@ npm run start
 
 ## Protractor Tests
 
-This branched contains a few Protractor tests in **./client/e2e/src/app.e2e-spec.js** file.
+This branch contains a few Protractor tests in the **./client/e2e/src/app.e2e-spec.js** file.
 
 ```ts title=./client/e2e/src/app.e2e-spec.js
 describe("Angular App", () => {
@@ -56,7 +56,7 @@ describe("Angular App", () => {
 });
 ```
 
-The spec contains some tests to verify basic functionality of the app. Let's
+The spec contains some tests to verify the basic functionality of the app. Let's
 give them a try by running the `ng e2e` command:
 
 ```bash title='./client'

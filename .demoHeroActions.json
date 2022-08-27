@@ -1,0 +1,14 @@
+[
+  {
+    "id": "303136",
+    "name": "Create Button Spec File",
+    "type": "CreateFile",
+    "path": "./client/src/app/components/button/button.component.cy.ts"
+  },
+  {
+    "id": "303137",
+    "name": "Create LoginForm Spec File",
+    "type": "CreateFile",
+    "path": "./client/src/app/components/login-form/login-form.component.cy.ts"
+  }
+]

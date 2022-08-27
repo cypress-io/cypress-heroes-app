@@ -33,8 +33,20 @@ declare global {
   }
 }
 
-Cypress.Commands.add('mount', mount);
+import { ComponentsModule } from '../../src/app/components/components.module';
 
+type MountParams = Parameters<typeof mount>;
+
+Cypress.Commands.add(
+  'mount',
+  (component: MountParams[0], config: MountParams[1] = {}) => {
+    const imports = [...(config.imports || []), ComponentsModule];
+    return mount(component, {
+      ...config,
+      imports,
+    });
+  }
+);
 
 // Example use:
 // cy.mount(MyComponent)

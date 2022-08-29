@@ -5,11 +5,10 @@ import { generatePasswordHash } from '../src/utils/cypto';
 const prisma = new PrismaClient();
 
 async function main() {
-
   const data = await prisma.hero.findMany();
 
   if (data.length !== 0) {
-    console.log('Database already seeded')
+    console.log('Database already seeded');
     return;
   }
 
@@ -42,26 +41,43 @@ async function main() {
     },
   });
 
-  const minControlPower = await prisma.power.create({
+  const mindControlPower = await prisma.power.create({
     data: {
       name: 'Mind Control',
     },
   });
 
+  const superHearingPower = await prisma.power.create({
+    data: {
+      name: 'Super Hearing',
+    },
+  });
+
+  const superLogicsticsPower = await prisma.power.create({
+    data: {
+      name: 'Super Logistics',
+    },
+  });
+
+  const superSpeedPower = await prisma.power.create({
+    data: {
+      name: 'Super Speed',
+    },
+  });
+
   await prisma.hero.create({
     data: {
-      name: 'Dr Bombo',
-      // avatar: fs.readFileSync('./prisma/images/hero1.jpg').toString('base64'),
+      name: 'The Smoker',
       avatar: {
         create: {
-          filename: 'hero1.jpg',
+          filename: 'hero1.png',
           contentType: 'image/jpeg',
-          image: fs.readFileSync('./prisma/images/hero1.jpg'),
+          image: fs.readFileSync('./prisma/images/hero1.png'),
         },
       },
-      price: 100,
-      saves: 100,
-      fans: 100,
+      price: Math.floor(Math.random() * 100) + 1,
+      saves: Math.floor(Math.random() * 100) + 1,
+      fans: Math.floor(Math.random() * 100) + 1,
       powers: {
         connect: [{ id: fireballPower.id }],
       },
@@ -70,113 +86,112 @@ async function main() {
 
   await prisma.hero.create({
     data: {
-      name: 'Fly girl',
-      // avatar: fs.readFileSync('./prisma/images/hero2.jpg').toString('base64'),
+      name: 'Warp Speed',
       avatar: {
         create: {
-          filename: 'hero2.jpg',
+          filename: 'hero2.png',
           contentType: 'image/jpeg',
-          image: fs.readFileSync('./prisma/images/hero2.jpg'),
+          image: fs.readFileSync('./prisma/images/hero2.png'),
         },
       },
-      price: 100,
-      saves: 100,
-      fans: 100,
+      price: Math.floor(Math.random() * 100) + 1,
+      saves: Math.floor(Math.random() * 100) + 1,
+      fans: Math.floor(Math.random() * 100) + 1,
       powers: {
-        connect: [{ id: flyingPower.id }],
+        connect: [{ id: superSpeedPower.id }],
+      },
+    },
+  });
+
+  await prisma.hero.create({
+    data: {
+      name: 'Cyonic',
+      avatar: {
+        create: {
+          filename: 'hero3.png',
+          contentType: 'image/jpeg',
+          image: fs.readFileSync('./prisma/images/hero3.png'),
+        },
+      },
+      price: Math.floor(Math.random() * 100) + 1,
+      saves: Math.floor(Math.random() * 100) + 1,
+      fans: Math.floor(Math.random() * 100) + 1,
+      powers: {
+        connect: [{ id: telekinesisPower.id }],
       },
     },
   });
   await prisma.hero.create({
     data: {
-      name: 'Fly girl',
-      // avatar: fs.readFileSync('./prisma/images/hero3.jpg').toString('base64'),
+      name: 'The Librarian',
       avatar: {
         create: {
-          filename: 'hero3.jpg',
+          filename: 'hero4.png',
           contentType: 'image/jpeg',
-          image: fs.readFileSync('./prisma/images/hero3.jpg'),
+          image: fs.readFileSync('./prisma/images/hero4.png'),
         },
       },
-      price: 100,
-      saves: 100,
-      fans: 100,
+      price: Math.floor(Math.random() * 100) + 1,
+      saves: Math.floor(Math.random() * 100) + 1,
+      fans: Math.floor(Math.random() * 100) + 1,
       powers: {
-        connect: [{ id: flyingPower.id }],
+        connect: [
+          { id: superHearingPower.id },
+          { id: superLogicsticsPower.id },
+        ],
       },
     },
   });
   await prisma.hero.create({
     data: {
-      name: 'Fly girl',
-      // avatar: fs.readFileSync('./prisma/images/hero4.jpg').toString('base64'),
+      name: 'Mr Angular',
       avatar: {
         create: {
-          filename: 'hero4.jpg',
+          filename: 'hero5.png',
           contentType: 'image/jpeg',
-          image: fs.readFileSync('./prisma/images/hero4.jpg'),
+          image: fs.readFileSync('./prisma/images/hero5.png'),
         },
       },
-      price: 100,
-      saves: 100,
-      fans: 100000000,
+      price: Math.floor(Math.random() * 100) + 1,
+      saves: Math.floor(Math.random() * 100) + 1,
+      fans: Math.floor(Math.random() * 100) + 1,
       powers: {
-        connect: [{ id: flyingPower.id }],
+        connect: [{ id: strengthPower.id }],
       },
     },
   });
   await prisma.hero.create({
     data: {
-      name: 'Fly girl',
-      // avatar: fs.readFileSync('./prisma/images/hero5.jpg').toString('base64'),
+      name: 'Collect Call Paul',
       avatar: {
         create: {
-          filename: 'hero5.jpg',
+          filename: 'hero6.png',
           contentType: 'image/jpeg',
-          image: fs.readFileSync('./prisma/images/hero5.jpg'),
+          image: fs.readFileSync('./prisma/images/hero6.png'),
         },
       },
-      price: 100,
-      saves: 100,
-      fans: 100,
+      price: Math.floor(Math.random() * 100) + 1,
+      saves: Math.floor(Math.random() * 100) + 1,
+      fans: Math.floor(Math.random() * 100) + 1,
       powers: {
-        connect: [{ id: flyingPower.id }],
+        connect: [{ id: invisibilityPower.id }],
       },
     },
   });
+
   await prisma.hero.create({
     data: {
-      name: 'Fly girl',
-      // avatar: fs.readFileSync('./prisma/images/hero6.jpg').toString('base64'),
+      name: 'Fly Girl',
       avatar: {
         create: {
-          filename: 'hero6.jpg',
+          filename: 'hero7.png',
           contentType: 'image/jpeg',
-          image: fs.readFileSync('./prisma/images/hero6.jpg'),
+          image: fs.readFileSync('./prisma/images/hero7.png'),
         },
       },
-      price: 100,
-      saves: 100,
-      fans: 100,
-      powers: {
-        connect: [{ id: flyingPower.id }],
-      },
-    },
-  });
-  await prisma.hero.create({
-    data: {
-      name: 'Fly girl',
-      // avatar: fs.readFileSync('./prisma/images/hero7.jpg').toString('base64'),
-      avatar: {
-        create: {
-          filename: 'hero7.jpg',
-          contentType: 'image/jpeg',
-          image: fs.readFileSync('./prisma/images/hero7.jpg'),
-        },
-      },
-      price: 100,
-      saves: 100,
-      fans: 100,
+      price: Math.floor(Math.random() * 100) + 1,
+      saves: Math.floor(Math.random() * 100) + 1,
+      fans: Math.floor(Math.random() * 100) + 1,
       powers: {
         connect: [{ id: flyingPower.id }],
       },
@@ -201,7 +216,5 @@ async function main() {
     },
   });
 }
-
-
 
 main();

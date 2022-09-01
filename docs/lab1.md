@@ -119,7 +119,7 @@ We won't worry about this for now, as we are about to take the Protractor test a
 
 ## Using the Cypress Migrator 
 
-The Cypress Migrator is an online tool to assist you with converting Protractor tests to Cypress. Open the migrator by going to [migrator.cypress.com](https://migrator.cypress.io/).
+The Cypress Migrator is an online tool to assist you with converting Protractor tests to Cypress. Open the migrator by going to [migrator.cypress.io](https://migrator.cypress.io/).
 
 You will see two code editors side by side. An example Protractor test is pre-filled on the left. Go ahead and click the "Migrate to Cypress" button and see how it takes the Protractor code and converts it into code that uses the Cypress APIs.
 

@@ -38,7 +38,7 @@ configuration wizard to get you up and running quickly.
 To start, go into the **client** folder and open Cypress:
 
 ```ts title=./client
-npm cypress:open
+npx cypress open
 ```
 
 ![Choose CT](/img/cypress-choose-screen.jpg)

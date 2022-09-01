@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { combineLatest, map, Observable } from 'rxjs';
-import { ModalService } from 'src/app/services/modal.service';
-import { HeroService } from 'src/app/services/hero.service';
-import { Hero, HeroEditModel, Power } from 'src/app/services/models';
-import { PowerService } from 'src/app/services/power.service';
-import { ConfirmDeleteModalComponent } from 'src/app/components/confirm-delete-modal/confirm-delete-modal.component';
+import { ModalService } from '../../../app/services/modal.service';
+import { HeroService } from '../../../app/services/hero.service';
+import { Hero, HeroEditModel, Power } from '../../../app/services/models';
+import { PowerService } from '../../../app/services/power.service';
+import { ConfirmDeleteModalComponent } from '../../../app/components/confirm-delete-modal/confirm-delete-modal.component';
 
 @Component({
   selector: 'app-hero-edit',

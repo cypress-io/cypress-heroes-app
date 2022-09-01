@@ -20,10 +20,10 @@ import {
   HeroCreateModel,
   HeroUpdateModel,
   UserViewModel,
-} from 'src/models/models';
+} from '../models/models';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { Roles } from 'src/auth/roles.decorator';
-import { GetUser } from 'src/utils/get-user.decorator';
+import { Roles } from '../auth/roles.decorator';
+import { GetUser } from '../utils/get-user.decorator';
 
 @Controller('heroes')
 export class HeroesController {

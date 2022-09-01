@@ -3,7 +3,7 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { Hero } from 'src/app/services/models';
+import { Hero } from '../../../app/services/models';
 
 @Component({
   selector: 'app-avatar',

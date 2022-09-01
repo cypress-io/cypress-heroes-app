@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero, HeroEditModel, User } from '../../services/models';
 import { HeroService } from '../../services/hero.service';
-import { ModalService } from 'src/app/services/modal.service';
-import { ConfirmDeleteModalComponent } from 'src/app/components/confirm-delete-modal/confirm-delete-modal.component';
-import { AuthService } from 'src/app/services/auth.service';
+import { ModalService } from '../../../app/services/modal.service';
+import { ConfirmDeleteModalComponent } from '../../../app/components/confirm-delete-modal/confirm-delete-modal.component';
+import { AuthService } from '../../../app/services/auth.service';
 import { Observable } from 'rxjs';
-import { ConfirmHireModalComponent } from 'src/app/components/confirm-hire-modal/confirm-hire-modal.component';
-import { AlertModalComponent } from 'src/app/components/alert-modal/alert-modal.component';
+import { ConfirmHireModalComponent } from '../../../app/components/confirm-hire-modal/confirm-hire-modal.component';
+import { AlertModalComponent } from '../../../app/components/alert-modal/alert-modal.component';
 
 @Component({
   selector: 'app-hero-list',

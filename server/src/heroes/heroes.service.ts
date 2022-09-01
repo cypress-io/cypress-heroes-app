@@ -5,9 +5,9 @@ import {
   HeroViewModel,
   HeroUpdateModel,
   HeroCreateModel,
-} from 'src/models/models';
-import { mapper } from 'src/utils/mapper';
-import { PrismaService } from 'src/utils/prisma.service';
+} from '../models/models';
+import { mapper } from '../utils/mapper';
+import { PrismaService } from '../utils/prisma.service';
 import { Request } from 'express';
 
 @Injectable({ scope: Scope.REQUEST })

@@ -1,8 +1,8 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { UserViewModel } from 'src/models/models';
-import { UsersService } from 'src/users/users.service';
-import { validatePassword } from 'src/utils/cypto';
+import { UserViewModel } from '../models/models';
+import { UsersService } from '../users/users.service';
+import { validatePassword } from '../utils/cypto';
 import { jwtConstants } from './constants';
 
 @Injectable()

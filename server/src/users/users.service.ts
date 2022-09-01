@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { UserViewModel } from 'src/models/models';
-import { mapper } from 'src/utils/mapper';
-import { PrismaService } from 'src/utils/prisma.service';
+import { UserViewModel } from '../models/models';
+import { mapper } from '../utils/mapper';
+import { PrismaService } from '../utils/prisma.service';
 
 @Injectable()
 export class UsersService {

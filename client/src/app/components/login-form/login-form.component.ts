@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { catchError, of } from 'rxjs';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from '../../../app/services/auth.service';
 @Component({
   selector: 'app-login-form',
   templateUrl: 'login-form.component.html',

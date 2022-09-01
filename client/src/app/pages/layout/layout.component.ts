@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AppRoutingModule } from 'src/app/app-routing.module';
-import { ComponentsModule } from 'src/app/components/components.module';
+import { AppRoutingModule } from '../../../app/app-routing.module';
+import { ComponentsModule } from '../../../app/components/components.module';
 import { HeaderComponent } from './header.component';
 
 @Component({

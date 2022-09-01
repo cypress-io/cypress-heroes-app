@@ -1,7 +1,7 @@
 import { CanActivate, ExecutionContext, Injectable } from '@nestjs/common';
 import { AuthGuard as PassportAuthGuard } from '@nestjs/passport';
 import { Request } from 'express';
-import { UserViewModel } from 'src/models/models';
+import { UserViewModel } from '../models/models';
 import { Reflector } from '@nestjs/core';
 import { User } from '@prisma/client';
 

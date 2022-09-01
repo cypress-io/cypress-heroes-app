@@ -137,6 +137,8 @@ it('should have custom text', () => {
 });
 ```
 
+> `@Component` is imported from '@angular/core'
+
 Now our button looks like it should, and the test also passes:
 
 ![Second Button Mount Test](/img/second-button-mount.jpg)

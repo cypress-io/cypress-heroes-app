@@ -279,6 +279,7 @@ We know this wasn't ideal, so we created a helper function called
 ```ts title=./client/src/app/components/button/button.component.cy.ts
 it('should respond to onClick event', () => {
   cy.mount('<app-button (click)="onClick.emit($event)">Click me</app-button>', {
+    declarations: [ButtonComponent],
     componentProperties: {
       onClick: createOutputSpy('onClickSpy'),
     },

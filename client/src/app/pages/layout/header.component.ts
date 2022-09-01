@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Observable } from 'rxjs';
-import { AppRoutingModule } from 'src/app/app-routing.module';
-import { ComponentsModule } from 'src/app/components/components.module';
-import { AuthService } from 'src/app/services/auth.service';
-import { ModalService } from 'src/app/services/modal.service';
-import { User } from 'src/app/services/models';
+import { AppRoutingModule } from '../../../app/app-routing.module';
+import { ComponentsModule } from '../../../app/components/components.module';
+import { AuthService } from '../../../app/services/auth.service';
+import { ModalService } from '../../../app/services/modal.service';
+import { User } from '../../../app/services/models';
 import { LoginModalComponent } from '../../components/login-modal/login-modal.component';
 
 @Component({

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { PowerViewModel } from 'src/models/models';
-import { mapper } from 'src/utils/mapper';
-import { PrismaService } from 'src/utils/prisma.service';
+import { PowerViewModel } from '../models/models';
+import { mapper } from '../utils/mapper';
+import { PrismaService } from '../utils/prisma.service';
 
 @Injectable()
 export class PowersService {

@@ -1,0 +1,22 @@
+[
+  {
+    "id": "354495",
+    "name": "App Controller",
+    "type": "CodeFragment",
+    "delay": 10,
+    "content": "import { Controller, Get } from '@nestjs/common';\nimport { AppService } from './app.service';\n\n@Controller()\nexport class AppController {\n  constructor(private readonly appService: AppService) {}\n\n  @Get()\n  getHello(): string {\n    return this.appService.getHello();\n  }\n}\n"
+  },
+  {
+    "id": "430112",
+    "name": "Create Protractor Folder",
+    "type": "CreateFolder",
+    "path": "./src/protractor"
+  },
+  {
+    "id": "309018",
+    "name": "Create App Spec",
+    "type": "CreateFile",
+    "path": "./src/protractor/test.spec.ts",
+    "content": "import { Controller, Get } from '@nestjs/common';\nimport { AppService }"
+  }
+]

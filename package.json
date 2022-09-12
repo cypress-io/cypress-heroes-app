@@ -1,0 +1,18 @@
+{
+  "name": "cypress-workshop",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm --prefix ./client run start",
+    "postinstall": "concurrently \"npm --prefix ./client install\" \"npm --prefix ./server install\"",
+    "guide": "path-exists guide && echo 'guide already cloned' || git clone -b guide git@github.com:cypress-io/cypress-heroes-app.git guide && path-exists ./guide/node_modules && echo 'guide deps already installed' || npm --prefix ./guide install && npm --prefix ./guide run serve"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^7.2.2",
+    "path-exists-cli": "^2.0.0"
+  }
+}

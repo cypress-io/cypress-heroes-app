@@ -1,0 +1,15 @@
+{
+  "workbench.colorCustomizations": {
+    "editor.background": "#131626f5",
+    "panel.background": "#131626f5",
+    "sideBar.background": "#131626f5",
+    "sideBar.foreground": "#BFC2D4",
+    "sideBarSectionHeader.background": "#131626f5",
+    "editor.lineHighlightBackground": "#ffffff02",
+    "gitDecoration.untrackedResourceForeground": "#BFC2D4",
+    "gitDecoration.ignoredResourceForeground": "#BFC2D4",
+    "tab.activeBackground": "#131626f5",
+    "tab.inactiveBackground": "#131626f5"
+  }
+
+}

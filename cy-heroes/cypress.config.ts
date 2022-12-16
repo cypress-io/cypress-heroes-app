@@ -4,6 +4,9 @@ export default defineConfig({
   projectId: 'asunfc',
   experimentalStudio: true,
   e2e: {
+    retries: {
+       runMode: 3
+    },
     baseUrl: 'http://localhost:4200',
   },
 

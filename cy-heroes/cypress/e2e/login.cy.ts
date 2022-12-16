@@ -1,4 +1,5 @@
 describe('login', () => {
+  const waitTime = 1;
   it('user should be able to log in', () => {
     cy.visit('/').wait(500, { log: false });
     cy.get('button').wait(1000, { log: false }).contains('Login').click();

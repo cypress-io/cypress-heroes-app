@@ -7,6 +7,8 @@ dist
 tmp
 out-tsc
 bazel-out
+videos
+screenshots
 
 # Node
 node_modules

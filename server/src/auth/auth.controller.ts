@@ -11,8 +11,8 @@ export class AuthController {
   @UseGuards(AuthGuard('local'))
   @Post('/')
   async login(@Request() req) {
-    console.log(count);
-    count++;
+    // console.log(count);
+    // count++;
     // if (count % 2 === 0) {
     //   throw new Error('oooppsie');
     // }

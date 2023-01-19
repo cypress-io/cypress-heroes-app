@@ -9,7 +9,7 @@ import { Hero, HeroEditModel } from './models';
 export class HeroService {
   constructor(private http: HttpClient) {}
 
-  private heroesUrl = 'http://localhost:3000/heroes'; // URL to web api
+  private heroesUrl = 'http://localhost:3001/heroes'; // URL to web api
   private $heros: Subject<Hero[]> = new Subject();
 
   httpOptions = {

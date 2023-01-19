@@ -16,7 +16,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   private readonly authResultKey = 'auth_result';
-  private readonly authUrl = 'http://localhost:3000/auth';
+  private readonly authUrl = 'http://localhost:3001/auth';
   private $user = new BehaviorSubject<User | undefined>(undefined);
 
   getAccessToken() {

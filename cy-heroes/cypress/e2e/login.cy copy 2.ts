@@ -1,4 +1,10 @@
 describe('login', () => {
+  afterEach(() => {
+    cy.clearAllCookies({ log: false });
+    cy.clearAllLocalStorage({ log: false });
+    cy.clearAllSessionStorage({ log: false });
+  });
+
   const waitTime = 1;
   it('user should be able to log in', () => {
     cy.visit('/').wait(500, { log: false });

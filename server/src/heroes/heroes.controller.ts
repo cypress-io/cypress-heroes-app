@@ -25,6 +25,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Roles } from '../auth/roles.decorator';
 import { GetUser } from '../utils/get-user.decorator';
 
+let count = 0;
 @Controller('heroes')
 export class HeroesController {
   constructor(private heroesService: HeroesService) {}
@@ -84,6 +85,13 @@ export class HeroesController {
     @GetUser() user: UserViewModel,
     @Param('id', ParseIntPipe) id: number,
   ) {
+    console.log(count);
+
+    if (count < 2) {
+      count++;
+      throw new Error('oooppsie');
+    }
+
     if (user.isAdmin) {
       return this.heroesService.update(id, hero);
     } else {

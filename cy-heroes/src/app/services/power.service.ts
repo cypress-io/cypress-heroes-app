@@ -9,7 +9,7 @@ import { Power } from './models';
 export class PowerService {
   constructor(private http: HttpClient) {}
 
-  private powersUrl = 'http://localhost:3000/powers'; // URL to web api
+  private powersUrl = 'http://localhost:3001/powers'; // URL to web api
 
   getPowers(): Observable<Power[]> {
     return this.http

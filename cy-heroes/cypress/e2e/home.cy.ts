@@ -1,43 +1,49 @@
 describe('home page', () => {
-  const waitTimer = 500;
+  const waitTimer = 5;
 
-  // describe('when not logged in', () => {
-  //   beforeEach(() => {
-  //     cy.visit('/');
-  //   });
+  afterEach(() => {
+    cy.clearAllCookies({ log: false });
+    cy.clearAllLocalStorage({ log: false });
+    cy.clearAllSessionStorage({ log: false });
+  })
 
-  //   it('clicking on like should alert the user they need to login', () => {
-  //     //get first hero and click like
-  //     cy.get('app-card')
-  //       .first()
-  //       .as('firstHero')
-  //       .find('app-icon-button[icon=like]')
-  //       .click()
-  //       .wait(waitTimer, { log: false });
-  //     cy.contains('You must log in to like.').wait(waitTimer, { log: false });
-  //     cy.get('button').contains('Ok').click().wait(waitTimer, { log: false });
-  //     cy.contains('You must log in to like.')
-  //       .should('not.exist')
-  //       .wait(waitTimer, { log: false });
-  //   });
+  describe('when not logged in', () => {
+    beforeEach(() => {
+      cy.visit('/');
+    });
 
-  //   it('clicking on hire should alert the user they need to login', () => {
-  //     //get first hero and click like
-  //     cy.get('app-card')
-  //       .first()
-  //       .as('firstHero')
-  //       .find('app-icon-button[icon=money]')
-  //       .click()
-  //       .wait(waitTimer, { log: false });
-  //     cy.contains('You must log in to hire this hero.').wait(waitTimer, {
-  //       log: false,
-  //     });
-  //     cy.get('button').contains('Ok').click().wait(waitTimer, { log: false });
-  //     cy.contains('You must log in to hire this hero.')
-  //       .should('not.exist')
-  //       .wait(waitTimer, { log: false });
-  //   });
-  // });
+    it('clicking on like should alert the user they need to login', () => {
+      //get first hero and click like
+      cy.get('app-card')
+        .first()
+        .as('firstHero')
+        .find('app-icon-button[icon=like]')
+        .click()
+        .wait(waitTimer, { log: false });
+      cy.contains('You must log in to like.').wait(waitTimer, { log: false });
+      cy.get('button').contains('Ok').click().wait(waitTimer, { log: false });
+      cy.contains('You must log in to like.')
+        .should('not.exist')
+        .wait(waitTimer, { log: false });
+    });
+
+    it('clicking on hire should alert the user they need to login', () => {
+      //get first hero and click like
+      cy.get('app-card')
+        .first()
+        .as('firstHero')
+        .find('app-icon-button[icon=money]')
+        .click()
+        .wait(waitTimer, { log: false });
+      cy.contains('You must log in to hire this hero.').wait(waitTimer, {
+        log: false,
+      });
+      cy.get('button').contains('Ok').click().wait(waitTimer, { log: false });
+      cy.contains('You must log in to hire this hero.')
+        .should('not.exist')
+        .wait(waitTimer, { log: false });
+    });
+  });
 
   describe('when normal user is logged in', () => {
     beforeEach(() => {
@@ -60,7 +66,7 @@ describe('home page', () => {
       //click like button
       cy.get('@firstHero')
         .find('app-icon-button[icon=like]')
-        .click()
+        .click({ scrollBehavior: false })
         .wait(waitTimer, { log: false });
       //assert count increased
       cy.get('@fanCount')
@@ -85,7 +91,7 @@ describe('home page', () => {
       //click hire button
       cy.get('@firstHero')
         .find('app-icon-button[icon=money]')
-        .click()
+        .click({ scrollBehavior: false })
         .wait(waitTimer, { log: false });
       //click yes
       cy.get('button').contains('Yes').click();
@@ -112,7 +118,7 @@ describe('home page', () => {
       //click hire button
       cy.get('@firstHero')
         .find('app-icon-button[icon=money]')
-        .click()
+        .click({ scrollBehavior: false })
         .wait(waitTimer, { log: false });
       //click no
       cy.get('button').contains('No').click().wait(waitTimer, { log: false });
@@ -146,7 +152,7 @@ describe('home page', () => {
       //click like button
       cy.get('@firstHero')
         .find('app-icon-button[icon=like]')
-        .click()
+        .click({ scrollBehavior: false })
         .wait(waitTimer, { log: false });
       //assert count increased
       cy.get('@fanCount').then((fanCount) => {
@@ -171,7 +177,7 @@ describe('home page', () => {
       //click hire button
       cy.get('@firstHero')
         .find('app-icon-button[icon=money]')
-        .click()
+        .click({ scrollBehavior: false })
         .wait(waitTimer, { log: false });
       //click yes
       cy.get('button').contains('Yes').click().wait(waitTimer, { log: false });
@@ -188,7 +194,7 @@ describe('home page', () => {
       cy.get('app-card')
         .first()
         .find('[icon=pencil]')
-        .click()
+        .click({ scrollBehavior: false })
         .wait(waitTimer, { log: false });
       cy.location('pathname')
         .should('match', /\/edit$/)
@@ -200,7 +206,7 @@ describe('home page', () => {
       cy.get('app-card')
         .first()
         .find('[icon=trash]')
-        .click()
+        .click({ scrollBehavior: false })
         .wait(waitTimer, { log: false });
       cy.contains('Delete Hero?').wait(waitTimer, { log: false });
       //click no
